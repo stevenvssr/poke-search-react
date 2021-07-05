@@ -1,0 +1,38 @@
+body {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+#logo:hover{
+  cursor: pointer;
+}
+
+#pokemon-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.pokebutt {
+  margin: 10px;
+}
+
+.gens {
+  margin: 20px;
+}
+
+#genOne {
+background-color: navy;
+color: white;
+}
+
+#genSeven {
+  border:  1px solid black;
+}
+
+.generations {
+  display: flex;
+  justify-content: center;
+}
