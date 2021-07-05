@@ -35,6 +35,7 @@ pokebuttons.forEach(button => {
     fetch(baseURL + `${button.innerText.toLowerCase()}`)
   .then(response => response.json())
   .then( data => {
+    console.log(data)
     info.insertAdjacentHTML("beforeend", '<ul class="pokemon-data"></ul>')
     list.innerHTML = '';
     info.insertAdjacentHTML("afterbegin",
