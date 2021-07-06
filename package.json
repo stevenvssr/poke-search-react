@@ -1,0 +1,13 @@
+{ "name": "pokefinder",
+  "main": "main.js",
+  "scripts": {
+    "dev": "webpack serve",
+    "start": "node server.js",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "webpack": "^5.42.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
