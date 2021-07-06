@@ -44,4 +44,7 @@ color: white;
   .generations {
     flex-direction: column;
   }
+  .flex{
+    display: inline-flex;
+  }
 }
