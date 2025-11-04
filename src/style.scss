@@ -1,0 +1,334 @@
+$font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$text-color: #fff;
+$bg-gradient: linear-gradient(to right, #1e1e2f, #2c2c45);
+$card-bg: rgba(30, 30, 45, 0.8);
+$card-hover-bg: rgba(50, 50, 70, 0.9);
+$detail-bg: rgba(40, 40, 60, 0.95);
+$detail-blur: blur(10px);
+$stat-gradient: linear-gradient(90deg, #ff6a00, #ee0979);
+
+@mixin center-flex($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+  background: $bg-gradient;
+  color: $text-color;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Logo */
+#logo-container {
+  @include center-flex(column);
+  cursor: pointer;
+  margin-bottom: 20px;
+
+  #logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    animation: spin 20s linear infinite;
+  }
+
+  #logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff3e3e;
+    text-shadow: 2px 2px #000;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Search Wrapper (For Autocomplete Positioning) --- */
+.search-container-wrapper {
+  position: relative;
+  @include center-flex(column); // Center the form and position dropdown
+  margin-bottom: 20px;
+}
+
+/* Search Form */
+form {
+  @include center-flex;
+  gap: 10px;
+  margin-bottom: 0; // Removed margin to be handled by the wrapper
+
+  .search-input {
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 2px solid #ccc;
+    width: 250px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    }
+  }
+
+  .search-btn {
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
+    border: none;
+    background: $primary-color;
+    color: $text-color;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $primary-hover;
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* --- Autocomplete Dropdown --- */
+.autocomplete-list {
+  position: absolute;
+  top: 100%; // Position below the input/form
+  margin-top: 5px;
+  background: $card-bg;
+  border-radius: 10px;
+  max-width: 250px;
+  width: 250px; // Match input width
+  padding: 0;
+  list-style: none;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+
+  li {
+    padding: 8px 12px;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: $card-hover-bg;
+    }
+
+    // Styling for the active (keyboard selected) item
+    &.active {
+      background: $primary-color;
+      color: $text-color;
+      font-weight: bold;
+    }
+  }
+}
+
+/* Generation Buttons */
+.gen-buttons {
+  @include center-flex(row, center, stretch);
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  .gens {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: $text-color;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    &.genOne {
+      background: #ffcb05;
+      color: #2a75bb;
+    }
+    &.genTwo {
+      background: #ff7f00;
+      color: #fff;
+    }
+    &.genThree {
+      background: #3b4cca;
+      color: #fff;
+    }
+    &.genFour {
+      background: #f84888;
+      color: #fff;
+    }
+    &.genFive {
+      background: #00a170;
+      color: #fff;
+    }
+    &.genSix {
+      background: #f85888;
+      color: #fff;
+    }
+    &.genSeven {
+      background: #ffa500;
+      color: #000;
+    }
+    &.genEight {
+      background: #00bfff;
+      color: #fff;
+    }
+    &.genNine {
+      background: #ff69b4;
+      color: #fff;
+    }
+  }
+}
+
+/* Pokémon List */
+.pokemon-list {
+  @include center-flex(row, center, stretch);
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 0;
+
+  .pokemon-card {
+    @include center-flex(column);
+    width: 120px;
+    padding: 10px;
+    border-radius: 15px;
+    background: $card-bg;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .pokebutt {
+      margin-top: 5px;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+}
+
+/* --- Pokémon Detail Modal --- */
+#modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  @include center-flex(column);
+  z-index: 999;
+}
+
+.pokemon-detail {
+  background: $detail-bg;
+  backdrop-filter: $detail-blur;
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px;
+  max-width: 90%;
+  text-align: center;
+  position: relative;
+
+  h3 {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 10px;
+  }
+
+  .types {
+    @include center-flex;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    span {
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-weight: bold;
+      color: #fff;
+      text-transform: capitalize;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .stats {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 10px auto;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      font-weight: bold;
+      background: $card-hover-bg;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      overflow: hidden;
+      position: relative; // Crucial for pseudo-bar positioning
+
+      span {
+        z-index: 2; // Keep text above the bar
+      }
+
+      // Stat Bar Visual using CSS Variable
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: var(--stat-width); // Dynamically set in App.jsx
+        background: $stat-gradient;
+        border-radius: 10px;
+        opacity: 0.7;
+        z-index: 1;
+        transition: width 0.5s ease-out; // Smooth animation
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .gen-buttons {
+    flex-direction: column;
+  }
+  .pokemon-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
